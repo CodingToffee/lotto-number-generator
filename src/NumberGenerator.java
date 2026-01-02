@@ -6,7 +6,8 @@ public interface NumberGenerator {
      * @return A list of integer numbers
      */
     public List<Integer> generateNumbers(List<Integer> badLuckNumbers);
-    
+
+
     public static boolean validateRandomNumber(List<Integer> badLuckNumbers, int randomNumber) {
         // validate number against badLuckNumbers
         for (int i = 0; i < badLuckNumbers.size(); i++) {
