@@ -13,6 +13,7 @@ public class badLuckNumberHandler {
         return badLuckNumbers;
     }
 
+
     /**
      * Checks for each number if it is in the valid range of 0-50
      * @param numbers
