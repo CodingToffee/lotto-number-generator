@@ -13,6 +13,7 @@ public class SixOutOfFourtyNine {
         }
     }
 
+
     public List<Integer> generateNumbers(List<Integer> badLuckNumbers) {
         List<Integer> tippNumbers = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
