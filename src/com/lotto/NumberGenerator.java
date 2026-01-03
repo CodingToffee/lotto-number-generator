@@ -1,13 +1,15 @@
+package com.lotto;
+
 import java.util.List;
 
 public interface NumberGenerator {
 
     /**
      * Generates a random number and checks it against the bad luck numbers.
-     * @param badLuckNumbers numbers that shall not be generated.
+     * @param invalidNumbers numbers that shall not be generated.
      * @return A valid random number within the valid range of numbers.
      */
-    int generateValidRandomNumber(List<Integer> badLuckNumbers);
+    int generateValidRandomNumber(List<Integer> invalidNumbers);
 
     /**
      * Generates the numbers to be used for tipping. Ignores numbers that are defined as bad luck numbers.
