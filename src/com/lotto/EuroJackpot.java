@@ -11,4 +11,12 @@ public class EuroJackpot implements NumberGenerator{
         twoOutOfTen = NumberGenerator.generateTippingNumbers(badLuckNumbers, 2, 10);
         fiveOutOfFifty = NumberGenerator.generateTippingNumbers(badLuckNumbers, 5, 50);
     }
+
+    public List<Integer> getTwoOutOfTen() {
+        return twoOutOfTen;
+    }
+
+    public List<Integer> getFiveOutOfFifty() {
+        return fiveOutOfFifty;
+    }
 }

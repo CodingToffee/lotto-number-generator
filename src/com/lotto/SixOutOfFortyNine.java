@@ -4,9 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SixOutOfFortyNine implements NumberGenerator {
-    List<Integer> sixOutOfFortyNine = new ArrayList<>();
+    List<Integer> tippingNumbers = new ArrayList<>();
 
     public SixOutOfFortyNine(List<Integer> badLuckNumbers) {
-        sixOutOfFortyNine = NumberGenerator.generateTippingNumbers(badLuckNumbers, 6, 49);
+        tippingNumbers = NumberGenerator.generateTippingNumbers(badLuckNumbers, 6, 49);
+    }
+
+    public List<Integer> getTippingNumbers() {
+        return tippingNumbers;
     }
 }
