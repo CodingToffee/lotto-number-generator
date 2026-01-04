@@ -22,7 +22,7 @@ public class BadLuckNumberHandler implements Serializable {
             if (intNumber > 0 && intNumber < 50) {
                 intNumbers.add(intNumber);
             } else {
-                throw new Exception("Number " + intNumber + " out of valid range!");
+                throw new Exception("Number " + intNumber + " out of valid range! Valid range is between 1 and 50.");
             }
         }
         // Safe bad luck numbers if all are valid
