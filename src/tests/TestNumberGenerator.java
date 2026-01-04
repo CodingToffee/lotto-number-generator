@@ -1,6 +1,8 @@
 package tests;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import com.lotto.NumberGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,13 +10,10 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.lotto.SixOutOfFortyNine;
-
-class TestSixOutOfFortyNine {
+class TestNumberGenerator {
     List<Integer> badLuckNumbers_1;
     List<Integer> badLuckNumbers_2;
     int numberOfBadLuckNumbers = 6;
-    SixOutOfFortyNine numberGenerator = new SixOutOfFortyNine();
 
     List<Integer> generateRandomBadLuckNumbers() {
         List<Integer> badLuckNumbers = new ArrayList<>();
@@ -44,17 +43,17 @@ class TestSixOutOfFortyNine {
     }
 
     @Test
-    void tippingNumbersNotInBadLuckNumbers() {
-        List<Integer> tippingNumbers_1 = numberGenerator.generateTippingNumbers(badLuckNumbers_1);
+    void BadLuckNumbersNotInTippingNumbers() {
+        List<Integer> tippingNumbers_1 = NumberGenerator.generateTippingNumbers(badLuckNumbers_1, 6, 49);
         assertFalse(tippingNumbers_1.containsAll(badLuckNumbers_1));
-        List<Integer> tippingNumbers_2 = numberGenerator.generateTippingNumbers(badLuckNumbers_2);
+        List<Integer> tippingNumbers_2 = NumberGenerator.generateTippingNumbers(badLuckNumbers_2, 6, 49);
         assertFalse(tippingNumbers_2.containsAll(badLuckNumbers_2));
     }
 
     @Test
     @DisplayName("No number should be contained twice in the tipping numbers")
     void noDoubleNumbers() {
-        List<Integer> tippingNumbers_1 = numberGenerator.generateTippingNumbers(badLuckNumbers_1);
+        List<Integer> tippingNumbers_1 = NumberGenerator.generateTippingNumbers(badLuckNumbers_1, 6, 49);
         System.out.println("tippingsNumbers: " + tippingNumbers_1);
         boolean twice = false;
         for (int i = 0; i < tippingNumbers_1.size(); i++) {
