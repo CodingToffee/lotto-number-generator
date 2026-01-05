@@ -2,10 +2,13 @@ package com.lotto;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 //import com.google.gson.*;
 
 public class BadLuckNumberHandler implements Serializable {
     List<Integer> badLuckNumbers;
+    private static final Logger logger = Logger.getLogger(BadLuckNumberHandler.class.getName());
 
     /**
      * Checks for each number if it is in the valid range of 0-50
@@ -29,11 +32,25 @@ public class BadLuckNumberHandler implements Serializable {
         badLuckNumbers = intNumbers;
     }
 
-    void setBadLuckNumbers(List<Integer> numbers) {
-        this.badLuckNumbers = numbers;
+    public void setBadLuckNumbers(String numbers) throws Exception {
+        try {
+            String[] seperateNumbers = numbers.split("\\s+");
+            List<Integer> intNumbers = new ArrayList<>();
+            for (String number : seperateNumbers) {
+                intNumbers.add(Integer.parseInt(number));
+            }
+            this.badLuckNumbers = intNumbers;
+        } catch (Exception e) {
+            logger.log(Level.WARNING, "Wrong number format for method setBadLuckNumbers.");
+            throw new Exception("Wrong number format!");
+        }
     }
 
-    List<Integer> getBadLuckNumbers() {
+    public List<Integer> getBadLuckNumbers() {
         return badLuckNumbers;
+    }
+
+    public void eraseBadLuckNumbers() {
+        badLuckNumbers.clear();
     }
 }

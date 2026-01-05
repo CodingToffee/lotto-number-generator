@@ -7,6 +7,7 @@ import java.util.logging.Level;
 
 public class Main {
     private static final Logger logger = Logger.getLogger(Main.class.getName());
+    private static String activeGame;
 
     public static void main(String[] args) {
         String filename = "badLuckNumbers.ser";
@@ -37,16 +38,70 @@ public class Main {
         String lottoParameter = scanner.nextLine();
 
         // Generate numbers based on user input
+        SixOutOfFortyNine sixOutOfFortyNine = new SixOutOfFortyNine(badLuckNumberHandler);
+        EuroJackpot euroJackpot = new EuroJackpot(badLuckNumberHandler);
         if (lottoParameter.equals("6outof49") || lottoParameter.equals("")) {
-            SixOutOfFortyNine sixOutOfFortyNine = new SixOutOfFortyNine(badLuckNumberHandler.getBadLuckNumbers());
+            activeGame = "6outof49";
             System.out.println("Generated tipping numbers for 6 out of 49:" + sixOutOfFortyNine.getTippingNumbers());
         } else if (lottoParameter.equals("Eurojackpot")) {
-            EuroJackpot euroJackpot = new EuroJackpot(badLuckNumberHandler.getBadLuckNumbers());
+            activeGame = "Eurojackpot";
             System.out.println("Generated tipping numbers for Eurojackpot (2 out of 10): " + euroJackpot.getTwoOutOfTen());
             System.out.println("Generated tipping numbers for Eurojackpot (5 out of 50): " + euroJackpot.getFiveOutOfFifty());
         } else {
             logger.log(Level.WARNING, "No valid input for kind of game.");
             System.out.println("Error: Please use \"6outof49\" or \"Eurojackpot\" as input parameter.");
+        }
+
+        boolean menu = true;
+        while(menu) {
+            // Get user input
+            System.out.print("Choose from the following commands: \n" +
+                    "\"change numbers\": to change the bad luck numbers.\n" +
+                    "\"delete numbers\": to delete set bad luck numbers.\n" +
+                    "\"regenerate\": to regenerate the numbers of the chosen game.\n" +
+                    "\"switch\": to switch the game.\n" +
+                    "\"X\": to exit the programm.\n");
+            String newLottoParameter = scanner.nextLine();
+
+            switch(newLottoParameter) {
+                case "change numbers":
+                    System.out.println("Please provide the new bad luck numbers, seperated with spaces.");
+                    String badLuckNumbers = scanner.nextLine();
+                    try {
+                        badLuckNumberHandler.setBadLuckNumbers(badLuckNumbers);
+                    } catch (Exception e){
+                        System.out.println(e.getMessage());
+                    }
+                    break;
+
+                case "delete numbers":
+                    badLuckNumberHandler.eraseBadLuckNumbers();
+                    break;
+
+                case "regenerate":
+                    if (activeGame.equals("6outof49")) {
+                        sixOutOfFortyNine.regenerateTippingNumbers();
+                    }
+                    else {
+                        euroJackpot.regenerateTippingNumbers();
+                    }
+                    break;
+
+                case "switch":
+                    if (activeGame.equals("6outof49")) {
+                        activeGame = "Euroackpot";
+                        euroJackpot.regenerateTippingNumbers();
+                    }
+                    else {
+                        activeGame = "6outof49";
+                        sixOutOfFortyNine.regenerateTippingNumbers();
+                    }
+                    break;
+
+                case "X":
+                    menu = false;
+                    break;
+            }
         }
 
         // Serialize bad luck numbers
