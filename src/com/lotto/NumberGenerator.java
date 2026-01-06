@@ -52,4 +52,10 @@ public interface NumberGenerator {
         }
         return true;
     }
+
+    /**
+     * Regenerates random tipping numbers and prints them to the cli.
+     * @return the list of tipping numbers
+     */
+    void regenerateTippingNumbers();
 }
