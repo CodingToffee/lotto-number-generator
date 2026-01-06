@@ -32,6 +32,11 @@ public class BadLuckNumberHandler implements Serializable {
         badLuckNumbers = intNumbers;
     }
 
+    /**
+     * Takes a string of space seperated numbers and converts them into a list of integers which is then saved in the badLuckNumbers attribute.
+     * @param numbers to be set as bad luck numbers.
+     * @throws Exception if the number format isn't correct
+     */
     public void setBadLuckNumbers(String numbers) throws Exception {
         try {
             String[] seperateNumbers = numbers.split("\\s+");
