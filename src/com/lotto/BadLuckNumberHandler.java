@@ -22,7 +22,7 @@ public class BadLuckNumberHandler implements Serializable {
         }
         for (int i = 0; i < numbers.length; i++) {
             int intNumber = Integer.parseInt(numbers[i]);
-            if (intNumber > 0 && intNumber < 50) {
+            if (intNumber > 0 && intNumber < 51) {
                 intNumbers.add(intNumber);
             } else {
                 throw new Exception("Number " + intNumber + " out of valid range! Valid range is between 1 and 50.");
@@ -38,17 +38,29 @@ public class BadLuckNumberHandler implements Serializable {
      * @throws Exception if the number format isn't correct
      */
     public void setBadLuckNumbers(String numbers) throws Exception {
-        try {
-            String[] seperateNumbers = numbers.split("\\s+");
-            List<Integer> intNumbers = new ArrayList<>();
-            for (String number : seperateNumbers) {
+        String[] seperateNumbers = numbers.split("\\s+");
+        List<Integer> intNumbers = new ArrayList<>();
+        if (seperateNumbers.length > 6) {
+            logger.log(Level.WARNING, "Too many bad luck numbers given.");
+            throw new IllegalArgumentException("Too many bad luck numbers! Only six allowed.");
+        }
+        for (String number : seperateNumbers) {
+            int intNumber;
+            try {
+                intNumber = Integer.parseInt(number);
+            } catch (Exception e) {
+                logger.log(Level.WARNING, "Wrong number format for method setBadLuckNumbers.");
+                throw new NumberFormatException("Wrong number format!");
+            }
+            if (intNumber > 0 && intNumber < 51) {
                 intNumbers.add(Integer.parseInt(number));
             }
-            this.badLuckNumbers = intNumbers;
-        } catch (Exception e) {
-            logger.log(Level.WARNING, "Wrong number format for method setBadLuckNumbers.");
-            throw new Exception("Wrong number format!");
+            else {
+                logger.log(Level.WARNING, "Bad luck number out of range.");
+                throw new IllegalArgumentException("Number out of Range. Only 1-50 allowed.");
+            }
         }
+        this.badLuckNumbers = intNumbers;
     }
 
     public List<Integer> getBadLuckNumbers() {
