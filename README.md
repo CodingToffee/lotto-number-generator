@@ -6,7 +6,7 @@ The application takes bad luck numbers as an argument which shall not be part of
 # How to install
 1. Download the latest release .jar file.
 2. cd into the file location.
-3. Execute the following command and replace <numbers> with up to six bad luck numbers, separated with a space:
+3. Execute the following command and replace "<numbers>" with up to six bad luck numbers, separated with a space:
 ```sh
 java -jar lotto-number-generator.jar <numbers>
 ```
