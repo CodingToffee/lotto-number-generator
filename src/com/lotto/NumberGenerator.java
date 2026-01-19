@@ -6,6 +6,22 @@ import java.util.List;
 public interface NumberGenerator {
 
     /**
+     * Validates that a given number is not part of the given bad luck numbers.
+     * @param badLuckNumbers numbers that shall not be generated.
+     * @param randomNumber the number to be validated.
+     * @return True if number is not part of the bad luck numbers. False otherwise.
+     */
+    static boolean validateRandomNumber(List<Integer> badLuckNumbers, int randomNumber) {
+        // validate number against badLuckNumbers
+        for (int badLuckNumber : badLuckNumbers) {
+            if (randomNumber == badLuckNumber) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * Generates a random number and checks it against the bad luck numbers.
      * @param invalidNumbers numbers that shall not be generated.
      * @param range The valid range to generate a random number from.
@@ -37,25 +53,9 @@ public interface NumberGenerator {
         tippingNumbers.sort(Integer::compareTo);
         return tippingNumbers;
     }
-    /**
-     * Validates that a given number is not part of the given bad luck numbers.
-     * @param badLuckNumbers numbers that shall not be generated.
-     * @param randomNumber the number to be validated.
-     * @return True if number is not part of the bad luck numbers. False otherwise.
-     */
-    static boolean validateRandomNumber(List<Integer> badLuckNumbers, int randomNumber) {
-        // validate number against badLuckNumbers
-        for (int badLuckNumber : badLuckNumbers) {
-            if (randomNumber == badLuckNumber) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     /**
-     * Regenerates random tipping numbers and prints them to the cli.
-     * @return the list of tipping numbers
+     * Regenerates random tipping numbers for the implementing class and prints them to the cli.
      */
     void regenerateTippingNumbers();
 }

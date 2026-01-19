@@ -63,10 +63,17 @@ public class BadLuckNumberHandler implements Serializable {
         this.badLuckNumbers = intNumbers;
     }
 
+    /**
+     * Getter for bad luck numbers.
+     * @return the bad luck numbers.
+     */
     public List<Integer> getBadLuckNumbers() {
         return badLuckNumbers;
     }
 
+    /**
+     * Erases the bad luck numbers.
+     */
     public void eraseBadLuckNumbers() {
         badLuckNumbers.clear();
     }
