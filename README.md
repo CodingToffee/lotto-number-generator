@@ -22,5 +22,6 @@ java -jar lotto-number-generator.jar <numbers>
   X: to end the application
 - To use any of the options, simply type it in
 
-Have fun using the app and good luck!
-Honestly just don't play lotto, ego shooters are way more fun and prepare you for the real life ;)
+Have fun using the app and good luck!* \n
+
+*Honestly just don't play lotto, ego shooters are way more fun and prepare you for the real life ;)
